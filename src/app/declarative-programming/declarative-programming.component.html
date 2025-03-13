@@ -16,10 +16,3 @@ Looping a variable into HTML element <br /><br />
 
 <input type="text" #input />
 <button (click)="addEmployee(input.value)">Add Employee</button>
-
-<hr />
-<h2>#3. Two Way Binding</h2>
-
-Notes : {{ notes }} <br /><br /><br />
-<input type="text" [(ngModel)]="notes" style="width: 500px;"/> <br>
-try to change the value of the input above, it will change the value of the notes variable directly

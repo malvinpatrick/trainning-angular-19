@@ -18,8 +18,6 @@ export class DeclarativeProgrammingComponent {
         'Eugenius'
     ]
 
-    notes: string = 'This is a declarative programming component';
-
     toogleShowAndHide() {
         this.isShow = !this.isShow;
     }

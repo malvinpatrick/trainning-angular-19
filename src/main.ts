@@ -4,6 +4,7 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { DeclarativeProgrammingComponent } from './app/declarative-programming/declarative-programming.component';
 import { MenuComponent } from './app/menu/menu.component';
+import { TwoWayBindingComponent } from './app/two-way-binding/two-way-binding.component';
 
 @Component({
     selector: 'app-root',
@@ -30,6 +31,10 @@ const appConfig: ApplicationConfig = {
             {
                 path: 'declarative-programming',
                 component: DeclarativeProgrammingComponent
+            },
+            {
+                path: 'two-way-binding',
+                component: TwoWayBindingComponent
             },
             {
                 path: '**',
