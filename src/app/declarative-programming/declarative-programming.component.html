@@ -1,6 +1,18 @@
-<button (click)="toogleShowAndHide()">Toogle</button> <br /><br />
+<h2>#1. Show / Hide HTML Element</h2>
+<button (click)="toogleShowAndHide()">Toogle</button>
 Click this button to hide and show the text below <br /><br />
-<hr>
-IsShow Variable = {{ isShow }} <br /><br />
+
+IsShow Variable = {{ isShow }} <br />
 
 @if(isShow) { This text will show and hide }
+
+<hr />
+
+<h2>#2. Looping</h2>
+Looping a variable into HTML element <br /><br />
+@for (item of employeeList; track $index; let i = $index) {
+<div>{{ i + 1 }}. {{ item }}</div>
+}
+
+<input type="text" #input />
+<button (click)="addEmployee(input.value)">Add Employee</button>
