@@ -13,8 +13,8 @@
 
     <div style="width: 300px;">
         <h2>Filtered Employee</h2>
-        <input type="text" [(ngModel)]="searchText2" /> <br>
-        Search Text: {{ searchText2() }} <br> <br>
+        <input type="text" [(ngModel)]="searchText" /> <br>
+        Search Text: {{ searchText() }} <br> <br>
 
         <h3>Result Filter</h3>
         @for (item of filteredEmployee(); track $index; let i = $index) {

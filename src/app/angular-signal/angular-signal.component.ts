@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, effect, model, signal, WritableSignal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -15,10 +15,10 @@ export class AngularSignalComponent {
         changes: 0
     });
 
-    searchText2 = signal<string>('');
+    searchText = signal<string>('');
 
     filteredEmployee = computed(() => {
-        return this.employee().data.filter((emp) => emp.toLowerCase().includes(this.searchText2().toLowerCase()));
+        return this.employee().data.filter((emp) => emp.toLowerCase().includes(this.searchText().toLowerCase()));
     });
 
     constructor() {}
