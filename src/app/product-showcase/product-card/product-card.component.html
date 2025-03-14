@@ -4,6 +4,9 @@
     </div>
     <div class="product-info">
         <h3 class="product-name">{{ name() }}</h3>
-        <p class="product-price">{{ formattedPrice() }}</p>
+        <p class="product-price">
+            {{ formattedPrice() }}
+            <button class="add-button" (click)="onAddClick()">Add</button>
+        </p>
     </div>
 </div>

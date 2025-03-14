@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ProductCardComponent } from '../product-card/product-card.component';
 
 interface Product {
@@ -79,4 +79,10 @@ export class TechnologyComponent {
             currency: '$'
         }
     ];
+
+    carts = signal<string[]>([]);
+
+    onAddProduct(productName: string): void {
+        this.carts.update((prev) => [...prev, productName]);
+    }
 }
