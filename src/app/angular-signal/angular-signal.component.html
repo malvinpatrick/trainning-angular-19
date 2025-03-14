@@ -1,0 +1,26 @@
+<div style="display: flex; flex-direction: row;">
+
+    <div style="width: 300px;">
+        <h2>Employee</h2>
+        @for (item of employee().data; track $index; let i = $index) {
+        <div>{{ i + 1 }}. {{ item }}</div>
+        }
+        
+        <input type="text" #input />
+        <button (click)="addEmployee(input.value)">Add Employee</button> <br>
+        Employee List Changes Count: {{ employee().changes }}
+    </div>
+
+    <div style="width: 300px;">
+        <h2>Filtered Employee</h2>
+        <input type="text" [(ngModel)]="searchText2" /> <br>
+        Search Text: {{ searchText2() }} <br> <br>
+
+        <h3>Result Filter</h3>
+        @for (item of filteredEmployee(); track $index; let i = $index) {
+        <div>{{ i + 1 }}. {{ item }}</div>
+        }
+    </div>
+
+</div>
+
