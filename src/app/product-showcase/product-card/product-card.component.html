@@ -1,0 +1,9 @@
+<div class="product-card">
+    <div class="product-image">
+        <img [src]="imageUrl()" [alt]="name()" />
+    </div>
+    <div class="product-info">
+        <h3 class="product-name">{{ name() }}</h3>
+        <p class="product-price">{{ formattedPrice() }}</p>
+    </div>
+</div>

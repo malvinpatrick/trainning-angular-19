@@ -1,0 +1,15 @@
+<div class="product-showcase">
+    <div class="product-grid">
+        @for (product of products; track $index) {
+        <div class="product-column">
+            <app-product-card
+                [imageUrl]="product.imageUrl"
+                [name]="product.name"
+                [price]="product.price"
+                [currency]="product.currency"
+            >
+            </app-product-card>
+        </div>
+        }
+    </div>
+</div>

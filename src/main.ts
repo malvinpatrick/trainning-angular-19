@@ -6,6 +6,7 @@ import { DeclarativeProgrammingComponent } from './app/declarative-programming/d
 import { MenuComponent } from './app/menu/menu.component';
 import { TwoWayBindingComponent } from './app/two-way-binding/two-way-binding.component';
 import { AngularSignalComponent } from './app/angular-signal/angular-signal.component';
+import { ProductShowcaseComponent } from './app/product-showcase/product-showcase.component';
 
 @Component({
     selector: 'app-root',
@@ -40,6 +41,10 @@ const appConfig: ApplicationConfig = {
             {
                 path: 'angular-signal',
                 component: AngularSignalComponent
+            },
+            {
+                path: 'product-showcase',
+                loadChildren: () => import('./app/product-showcase/product-showcase.routes').then(m => m.PRODUCT_SHOWCASE_ROUTES)
             },
             {
                 path: '**',
