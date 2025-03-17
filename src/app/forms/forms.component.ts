@@ -58,11 +58,12 @@ export class FormsComponent implements OnInit {
     onTemplateSubmit(form: NgForm) {
         this.templateSubmitted.set(true);
         if (form.valid) {
-            console.log('Template form submitted:', {
+            const result = {
                 name: this.templateUser.name(),
                 email: this.templateUser.email(),
                 phone: this.templateUser.phone()
-            });
+            };
+            console.log('Template form submitted:', result);
 
             // Reset form after successful submission
             form.resetForm(this.templateDefaults);
@@ -80,6 +81,7 @@ export class FormsComponent implements OnInit {
         this.reactiveSubmitted = true;
         if (this.reactiveForm.valid) {
             console.log('Reactive form submitted:', this.reactiveForm.value);
+            
             // Reset form after successful submission
             this.resetReactiveForm();
             this.reactiveSubmitted = false;
