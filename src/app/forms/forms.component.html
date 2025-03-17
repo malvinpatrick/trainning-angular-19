@@ -1,0 +1,111 @@
+<div class="container">
+    <h1>Angular Forms Example</h1>
+    <div style="text-align: center;">Open Console</div>
+
+    <!-- Template-driven form -->
+    <div class="form-container">
+        <h2>Template-driven Form</h2>
+        <form #templateForm="ngForm" (ngSubmit)="onTemplateSubmit(templateForm)">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    [(ngModel)]="templateUser.name"
+                    #name="ngModel"
+                    required
+                    minlength="3"
+                />
+                <div class="error" *ngIf="name.invalid && (name.dirty || name.touched || templateSubmitted)">
+                    <div *ngIf="name.errors?.['required']">Name is required</div>
+                    <div *ngIf="name.errors?.['minlength']">Name must be at least 3 characters</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    [(ngModel)]="templateUser.email"
+                    #email="ngModel"
+                    required
+                    email
+                />
+                <div class="error" *ngIf="email.invalid && (email.dirty || email.touched || templateSubmitted)">
+                    <div *ngIf="email.errors?.['required']">Email is required</div>
+                    <div *ngIf="email.errors?.['email']">Please enter a valid email</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    [(ngModel)]="templateUser.phone"
+                    #phone="ngModel"
+                    required
+                    pattern="^\d{10}$"
+                />
+                <div class="error" *ngIf="phone.invalid && (phone.dirty || phone.touched || templateSubmitted)">
+                    <div *ngIf="phone.errors?.['required']">Phone is required</div>
+                    <div *ngIf="phone.errors?.['pattern']">Phone must be exactly 10 digits</div>
+                </div>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- Reactive form -->
+    <div class="form-container">
+        <h2>Reactive Form</h2>
+        <form [formGroup]="reactiveForm" (ngSubmit)="onReactiveSubmit()">
+            <div class="form-group">
+                <label for="r-name">Name</label>
+                <input type="text" id="r-name" formControlName="name" />
+                <div
+                    class="error"
+                    *ngIf="rf['name'].invalid && (rf['name'].dirty || rf['name'].touched || reactiveSubmitted)"
+                >
+                    <div *ngIf="rf['name'].errors?.['required']">Name is required</div>
+                    <div *ngIf="rf['name'].errors?.['minlength']">Name must be at least 3 characters</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="r-email">Email</label>
+                <input type="email" id="r-email" formControlName="email" />
+                <div
+                    class="error"
+                    *ngIf="rf['email'].invalid && (rf['email'].dirty || rf['email'].touched || reactiveSubmitted)"
+                >
+                    <div *ngIf="rf['email'].errors?.['required']">Email is required</div>
+                    <div *ngIf="rf['email'].errors?.['email']">Please enter a valid email</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="r-phone">Phone</label>
+                <input type="text" id="r-phone" formControlName="phone" />
+                <div
+                    class="error"
+                    *ngIf="rf['phone'].invalid && (rf['phone'].dirty || rf['phone'].touched || reactiveSubmitted)"
+                >
+                    <div *ngIf="rf['phone'].errors?.['required']">Phone is required</div>
+                    <div *ngIf="rf['phone'].errors?.['pattern']">Phone must be exactly 10 digits</div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button type="submit">Submit</button>
+                <button type="button" (click)="resetReactiveForm()">Reset</button>
+                <button type="button" (click)="setFormValues()">Fill Values</button>
+            </div>
+        </form>
+    </div>
+</div>

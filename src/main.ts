@@ -7,6 +7,7 @@ import { MenuComponent } from './app/menu/menu.component';
 import { TwoWayBindingComponent } from './app/two-way-binding/two-way-binding.component';
 import { AngularSignalComponent } from './app/angular-signal/angular-signal.component';
 import { ProductShowcaseComponent } from './app/product-showcase/product-showcase.component';
+import { FormsComponent } from './app/forms/forms.component';
 
 @Component({
     selector: 'app-root',
@@ -45,6 +46,10 @@ const appConfig: ApplicationConfig = {
             {
                 path: 'product-showcase',
                 loadChildren: () => import('./app/product-showcase/product-showcase.routes').then(m => m.PRODUCT_SHOWCASE_ROUTES)
+            },
+            {
+                path: 'forms', 
+                component: FormsComponent
             },
             {
                 path: '**',
