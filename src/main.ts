@@ -8,6 +8,7 @@ import { TwoWayBindingComponent } from './app/two-way-binding/two-way-binding.co
 import { AngularSignalComponent } from './app/angular-signal/angular-signal.component';
 import { ProductShowcaseComponent } from './app/product-showcase/product-showcase.component';
 import { FormsComponent } from './app/forms/forms.component';
+import { DynamicFormArrayComponent } from './app/dynamic-form-array/dynamic-form-array.component';
 
 @Component({
     selector: 'app-root',
@@ -50,6 +51,10 @@ const appConfig: ApplicationConfig = {
             {
                 path: 'forms', 
                 component: FormsComponent
+            },
+            {
+                path: 'dynamic-form-array',
+                component: DynamicFormArrayComponent
             },
             {
                 path: '**',

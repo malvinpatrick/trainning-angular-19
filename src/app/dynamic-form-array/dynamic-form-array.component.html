@@ -1,0 +1,101 @@
+<div class="container">
+  <h1>Dynamic Form with FormArray</h1>
+  <p>
+    This example demonstrates a dynamic form using FormArray to add and remove form controls.
+  </p>
+
+  <div class="form-container">
+    <div class="form-section">
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <h2>Profile Information</h2>
+        
+        <div class="form-field">
+          <label for="firstName">First Name:</label>
+          <input type="text" id="firstName" formControlName="firstName" class="form-control" 
+                [class.is-invalid]="firstName?.invalid && firstName?.touched">
+          <div class="error-message" *ngIf="firstName?.invalid && firstName?.touched">
+            <span *ngIf="firstName?.errors?.['required']">First name is required</span>
+            <span *ngIf="firstName?.errors?.['minlength']">First name must be at least 2 characters</span>
+          </div>
+        </div>
+        
+        <div class="form-field">
+          <label for="lastName">Last Name:</label>
+          <input type="text" id="lastName" formControlName="lastName" class="form-control" 
+                [class.is-invalid]="lastName?.invalid && lastName?.touched">
+          <div class="error-message" *ngIf="lastName?.invalid && lastName?.touched">
+            <span *ngIf="lastName?.errors?.['required']">Last name is required</span>
+            <span *ngIf="lastName?.errors?.['minlength']">Last name must be at least 2 characters</span>
+          </div>
+        </div>
+        
+        <div class="form-field">
+          <label for="email">Email:</label>
+          <input type="email" id="email" formControlName="email" class="form-control" 
+                [class.is-invalid]="email?.invalid && email?.touched">
+          <div class="error-message" *ngIf="email?.invalid && email?.touched">
+            <span *ngIf="email?.errors?.['required']">Email is required</span>
+            <span *ngIf="email?.errors?.['email']">Please enter a valid email</span>
+          </div>
+        </div>
+        
+        <h2>Skills <button type="button" (click)="addSkill()" class="btn add-btn">Add Skill</button></h2>
+        
+        <div formArrayName="skills">
+          <div *ngFor="let skill of skills.controls; let i = index" class="skill-item">
+            <div [formGroupName]="i" class="skill-form">
+              <h3>Skill #{{ i + 1 }}</h3>
+              
+              <div class="form-field">
+                <label [for]="'skillName' + i">Skill Name:</label>
+                <input type="text" [id]="'skillName' + i" formControlName="name" class="form-control" 
+                      [class.is-invalid]="skill.get('name')?.invalid && skill.get('name')?.touched">
+                <div class="error-message" *ngIf="skill.get('name')?.invalid && skill.get('name')?.touched">
+                  Skill name is required
+                </div>
+              </div>
+              
+              <div class="form-field">
+                <label [for]="'skillLevel' + i">Skill Level:</label>
+                <select [id]="'skillLevel' + i" formControlName="level" class="form-control">
+                  <option *ngFor="let level of skillLevels" [value]="level">{{ level }}</option>
+                </select>
+              </div>
+              
+              <div class="form-field">
+                <label [for]="'experience' + i">Years of Experience:</label>
+                <input type="number" [id]="'experience' + i" formControlName="yearsOfExperience" class="form-control" 
+                      [class.is-invalid]="skill.get('yearsOfExperience')?.invalid && skill.get('yearsOfExperience')?.touched">
+                <div class="error-message" *ngIf="skill.get('yearsOfExperience')?.invalid && skill.get('yearsOfExperience')?.touched">
+                  <span *ngIf="skill.get('yearsOfExperience')?.errors?.['required']">Years of experience is required</span>
+                  <span *ngIf="skill.get('yearsOfExperience')?.errors?.['min']">Cannot be negative</span>
+                  <span *ngIf="skill.get('yearsOfExperience')?.errors?.['max']">Cannot exceed 50 years</span>
+                </div>
+              </div>
+              
+              <button type="button" (click)="removeSkill(i)" class="btn remove-btn" 
+                     [disabled]="skills.length === 1">Remove Skill</button>
+            </div>
+          </div>
+        </div>
+        
+        <button type="submit" class="btn submit-btn">Submit</button>
+      </form>
+    </div>
+    
+    <div class="preview-section">
+      <h2>Form Value Preview</h2>
+      <div class="preview-card">
+        <pre>{{ profileForm.value | json }}</pre>
+      </div>
+      
+      <h2>Form Status</h2>
+      <div class="status-card">
+        <p><strong>Form Valid:</strong> {{ profileForm.valid }}</p>
+        <p><strong>Form Status:</strong> {{ profileForm.status }}</p>
+        <p><strong>Form Touched:</strong> {{ profileForm.touched }}</p>
+        <p><strong>Form Dirty:</strong> {{ profileForm.dirty }}</p>
+      </div>
+    </div>
+  </div>
+</div>
